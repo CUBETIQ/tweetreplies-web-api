@@ -1,0 +1,9 @@
+.github/
+__pycache__/
+.dockerignore
+.gitignore
+Dockerfile
+README.md
+renovate.json
+run.sh
+.git/

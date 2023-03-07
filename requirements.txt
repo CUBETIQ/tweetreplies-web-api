@@ -1,0 +1,4 @@
+flask==2.2.3
+environs==9.5.0
+gunicorn==20.1.0
+tweepy==4.12.1
