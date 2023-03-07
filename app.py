@@ -18,9 +18,9 @@ def str2bool(v):
 
 
 def to_csv(usernames):
-    csv = 'no, username'
+    csv = 'no, username\n'
     for i, username in enumerate(usernames):
-        csv += f'{i}, {username}'
+        csv += f'{i}, {username}\n'
 
     return csv
 
