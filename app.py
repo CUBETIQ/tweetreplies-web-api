@@ -88,7 +88,16 @@ def create_app():
             "examples": [
                 {
                     "uri": "/?tweet_id=1632730569065787392",
-                }
+                },
+                {
+                    'uri': '/?tweet_id=1632730569065787392&export=csv',
+                },
+                {
+                    'uri': '/?tweet_id=1632730569065787392&export=json',
+                },
+                {
+                    'uri': '/?tweet_id=1632730569065787392&export=csv&dl=1',
+                },
             ]
         }), 400)
 
