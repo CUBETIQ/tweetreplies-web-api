@@ -7,3 +7,4 @@ README.md
 renovate.json
 run.sh
 .git/
+.env.example
