@@ -77,7 +77,7 @@ def create_app():
                 'total_replies': len(usernames),
                 'unique_replies': len(uniqe_usernames),
                 'author': author,
-                'replies': usernames if all else uniqe_usernames,
+                'replies': usernames if all else list(uniqe_usernames),
             }), 200)
 
         return make_response(jsonify({
@@ -95,10 +95,10 @@ def create_app():
                     "uri": "/?tweet_id=1632730569065787392",
                 },
                 {
-                    'uri': '/?tweet_id=1632730569065787392&export=csv',
+                    'uri': '/?tweet_id=1632730569065787392&export=csv&all=false',
                 },
                 {
-                    'uri': '/?tweet_id=1632730569065787392&export=json',
+                    'uri': '/?tweet_id=1632730569065787392&export=json&all=false',
                 },
                 {
                     'uri': '/?tweet_id=1632730569065787392&export=csv&dl=1',
