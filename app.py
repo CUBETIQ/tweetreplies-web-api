@@ -1,6 +1,8 @@
-from flask import Flask, jsonify, make_response, request, Response
-from config import TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET
 import tweepy
+from flask import Flask, Response, jsonify, make_response, request
+
+from config import (TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET,
+                    TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
 
 auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
 auth.set_access_token(TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET)
@@ -34,6 +36,9 @@ def create_app():
         export = request.args.get('export') or request.form.get('export')
         dl = request.args.get('dl') or request.form.get('dl')
         dl = str2bool(dl)
+        all = request.args.get('all') or request.form.get('all') or False
+        all = str2bool(all)
+
         mine_type = 'text/csv' if export == 'csv' else 'application/json'
         download_filename = f'export_{tweet_id}.csv' if export == 'csv' else f'export_{tweet_id}.json'
         content_disposition_type = 'attachment' if dl else 'inline'
@@ -72,7 +77,7 @@ def create_app():
                 'total_replies': len(usernames),
                 'unique_replies': len(uniqe_usernames),
                 'author': author,
-                'replies': usernames,
+                'replies': usernames if all else uniqe_usernames,
             }), 200)
 
         return make_response(jsonify({
